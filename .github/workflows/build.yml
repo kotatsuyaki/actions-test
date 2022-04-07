@@ -1,0 +1,19 @@
+on:
+  - push
+name: Build artifacts
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: alpine:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          touch artifact.txt
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: artifact.txt
+
